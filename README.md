@@ -63,7 +63,7 @@ Go to Code > Preferences > Settings and add:
 
 ### Contributing to the Project
 
-Simply fork the project on [Github](https://github.com) and make the changes locally on your computer. Once you have made the changes and are ready to push the changes, create a pull request. The changes will then be merged into the main branch.
+Simply fork the project on [Github](https://github.com) and make the changes locally on your computer. Once you have made the changes and are ready to push the changes, [format the code](https://stackoverflow.com/questions/29973357/how-do-you-format-code-in-visual-studio-code-vscode) and create a pull request. The changes will then be merged into the main branch.
 
 > **Note:** On Windows and OSX, you can use [Github for Desktop](https://desktop.github.com/) to easily create a commit and push the changes. On Linux, you can use [GitKraken](https://www.gitkraken.com/) and it's [free for students](https://www.gitkraken.com/github-student-developer-pack). Otherwise, you will need to install [git](https://git-scm.com/).
 
