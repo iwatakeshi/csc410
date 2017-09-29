@@ -1,5 +1,5 @@
 main: main.c matrix.c
-	gcc -g -pthreads main.c matrix.c
+	gcc -g -pthread main.c matrix.c
 
 dep: ./get-dep
 	./get-dep
