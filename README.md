@@ -1,7 +1,4 @@
-# csc410
-
-
-## Getting Started
+# Getting Started
 
 It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) since it supports [clang-format](https://clang.llvm.org/docs/ClangFormat.html) and provides intellisense and an integrated terminal for Windows, Mac, and Linux. However, other text editors such as Atom and Sublime will work as well. If you prefer to use a terminal, you check out [vim-clang-format](https://github.com/rhysd/vim-clang-format) plugin for vim or manually format the code with `clang-format -i [file]`.
 
