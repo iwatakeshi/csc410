@@ -12,13 +12,13 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) si
 > **Note:** It's possible to use Linux on Windows 10 via "Bash on Ubuntu on Windows". You can download Ubuntu and/or openSUSE on the Windows Store by searching either "Ubuntu" or "openSUSE".
 
 2. Install Visual Studio Code
-  > **Note:** On Windows 10, the default integrated terminal shell is PowerShell. This can be changed to Bash in File > Preferences > Settings and adding ` { "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\bash.exe" }` to the User Settings. If you prefer not to mess with the User Settings, you will need to execute `bash` in Powershell each time.
+  > **Note:** On Windows 10, the default integrated terminal shell is PowerShell. This can be changed to Bash in File > Preferences > Settings and adding ` { "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\bash.exe" }` to the User Settings. If you prefer not to mess with the User Settings, you will need to execute `bash` in Powershell each time you open the integrated terminal.
 
 3. Install [vscode-cpptools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools) extension for Visual Studio Code.
 4. Install clang-format via `sudo apt install clang-format` or `brew install clang-format` on OSX.
 > **Note:** On Windows 10, you can use clang-format via Bash, however, for a better experience, install clang-format using the [Windows installer](https://llvm.org/builds).
 
-5. Add clang-format to Visual Studio Code and change the default intellisense:
+5. Add clang-format to Visual Studio Code and change the default intellisense engine:
 
 **Windows:** 
 
