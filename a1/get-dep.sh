@@ -1,5 +1,6 @@
 #! /bin/bash
-get_dep() {
+
+function get_dep {
   if [ -d "master.zip" ]; then
     unzip master.zip && mv matrix.h-master/ matrix/
   else

@@ -4,6 +4,8 @@ main: main.c matrix.c
 dep: ./get-dep
 	./get-dep
 
+clean*: clean clean-dep
+
 clean:
 	rm -f -r a.*
 

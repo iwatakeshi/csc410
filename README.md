@@ -95,6 +95,9 @@ make clean
 
 # Clean the dependencies
 make clean-dep
+
+# Clean both
+make clean*
 ```
 
 While it's not necessary to run `clean-dep`, it might be good to do so.
