@@ -90,13 +90,13 @@ cd make
 There are two commands to clean the project:
 
 ```bash
-# Clean the auxiliary files
+# Remove the output file
 make clean
 
-# Clean the dependencies
+# Remove the dependencies
 make clean-dep
 
-# Clean both
+# Remove both
 make clean*
 ```
 
