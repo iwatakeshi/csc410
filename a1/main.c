@@ -58,6 +58,18 @@ void* multiplym_pthread(void* param) {
   pthread_exit(NULL);
 }
 
+void randomfunc1() {
+  // DELETE ME!
+}
+
+void randomfunc2() {
+  // DELETE ME!
+}
+
+void randomfunc3() {
+  // DELETE ME!
+}
+
 int main() {
   int n = 10, h = 2;
   int threads = 2;
