@@ -34,8 +34,6 @@ void multiplym(int** a, int** b, int** c, int n) {
 
 /* 
   Author: Takeshi I.
-  Note: This algorithm is O(n^3)
-  Source: https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
 */
 void* multiplym_pthread(void* param) {
   struct tdata* td = param;
