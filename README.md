@@ -4,7 +4,7 @@ It is recommended to use [Visual Studio Code](https://code.visualstudio.com/) si
 
 ### Preparing the Development Environment
 
-1.  Assuming we are using Linux or OSX, install the essential build tools such as gcc, g++, and make via `sudo apt install build-essential` or Xcode (via App Store).
+1.  Assuming we are using Linux or OSX, install the essential build tools such as gcc, g++, and make via `sudo apt install build-essential` or Xcode (via App Store). You will also need `unzip` via `sudo apt install unzip` if you don't have already. 
 
 > **Note:** It's possible to use Linux on Windows 10 via "Bash on Ubuntu on Windows". You can download Ubuntu and/or openSUSE on the Windows Store by searching either "Ubuntu" or "openSUSE".
 
