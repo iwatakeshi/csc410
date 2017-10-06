@@ -1,7 +1,11 @@
+/* 
+  Author: Takeshi I.
+*/
 #include "matrix.h"
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 struct tdata {
   pthread_t tid;
@@ -12,29 +16,7 @@ struct tdata {
 };
 
 int **A, **B, **C;
-/* 
-  Author: Takeshi I.
-  Note: This algorithm is O(n^3)
-  Source: https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
-*/
-void multiplym(int** a, int** b, int** c, int n) {
-  // For i from 1 to n:
-  for (int i = 0; i < n; i++) {
-    // For j from 1 to p:
-    for (int j = 0; j < n; j++) {
-      int sum = 0;
-      // For k from 1 to m:
-      for (int k = 0; k < n; k++) {
-        sum += a[i][k] * b[k][j];
-      }
-      c[i][j] = sum;
-    }
-  }
-}
 
-/* 
-  Author: Takeshi I.
-*/
 void* multiplym_pthread(void* param) {
   struct tdata* td = param;
   int threads = td->threads;
@@ -58,20 +40,8 @@ void* multiplym_pthread(void* param) {
   pthread_exit(NULL);
 }
 
-void randomfunc1() {
-  // DELETE ME!
-}
-
-void randomfunc2() {
-  // DELETE ME!
-}
-
-void randomfunc3() {
-  // DELETE ME!
-}
-
-int main() {
-  int n = 10, h = 2;
+int main(int argc, char* argv[]) {
+  int n = 100, h = 20;
   int threads = 2;
 
   struct tdata td[threads];
@@ -81,10 +51,9 @@ int main() {
   A = mallocm(n, n);
   B = mallocm(n, n);
   C = mallocm(n, n);
-  int** D = mallocm(n, n);
 
   // Generate random numbers
-  srand(h);
+  srand(time(NULL));
   randm(A, n, n, h);
   randm(B, n, n, h);
 
@@ -99,22 +68,9 @@ int main() {
     pthread_join(td[i].tid, &status);
   }
 
-  // Print A, B, and C
-  printf("A\n");
-  printm(A, n, n);
-  printf("\n");
-
-  printf("B\n");
-  printm(B, n, n);
-  printf("\n");
-
-  printf("C: Pthread\n");
+  printf("Pthread: \n");
   printm(C, n, n);
   printf("\n");
-
-  printf("C: Sequential\n");
-  multiplym(A, B, C, n);
-  printm(C, n, n);
 
   // Free memory
   freem(A, n);
