@@ -5,7 +5,7 @@
         "name": "(gdb) Launch main.c",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceRoot}/a1/a.out",
+        "program": "${workspaceRoot}/a1/omp.out",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}",

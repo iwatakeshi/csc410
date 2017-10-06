@@ -10,11 +10,11 @@
 int n = 100;
 
 void multiply(int** A, int** B, int** C) {
-  int i, j, k, tid;
-#pragma omp parallel for private(tid)
+  int i, j, k;
+  #pragma omp parallel shared(A, B, C) private(i, j, k)
   for (i = 0; i < n; i++) {
+    #pragma omp for
     for (j = 0; j < n; j++) {
-      C[i][j] = 0;
       for (k = 0; k < n; k++) {
         C[i][j] += A[i][k] * B[k][j];
       }
@@ -23,17 +23,20 @@ void multiply(int** A, int** B, int** C) {
 }
 
 int main(int argc, char* argv[]) {
+
   int** matrix1 = mallocm(n, n);
   int** matrix2 = mallocm(n, n);
-  int** product = mallocm(n, n);
+  int** product = callocm(n, n);
 
   srand(time(NULL));
   randm(matrix1, n, n, 20);
   randm(matrix2, n, n, 20);
 
-  printm(matrix1, n, n);
-  printm(matrix2, n, n);
   multiply(matrix1, matrix2, product);
+  // printm(matrix1, n, n);
+  // printf("\n");
+  // printm(matrix2, n, n);
+  // printf("\n");
 
   printf("OpenMP:\n");
   printm(product, n, n);
@@ -41,6 +44,6 @@ int main(int argc, char* argv[]) {
 
   freem(matrix1, n);
   freem(matrix2, n);
-
+  freem(product, n);
   return 0;
 }
