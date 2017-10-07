@@ -16,7 +16,6 @@ struct tdata {
 };
 
 int **A, **B, **C;
-
 void* multiplym_pthread(void* param) {
   struct tdata* td = param;
   int threads = td->threads;
