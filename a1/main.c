@@ -18,7 +18,7 @@ int **A, **B, **C;
   Source: https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm
 */
 void multiplym(int** a, int** b, int** c, int n) {
-  // For i from 1 to n:
+  // For i from 1 to n:time 
   for (int i = 0; i < n; i++) {
     // For j from 1 to p:
     for (int j = 0; j < n; j++) {
@@ -31,7 +31,6 @@ void multiplym(int** a, int** b, int** c, int n) {
     }
   }
 }
-
 /* 
   Author: Takeshi I.
 */
@@ -56,18 +55,6 @@ void* multiplym_pthread(void* param) {
     }
   }
   pthread_exit(NULL);
-}
-
-void randomfunc1() {
-  // DELETE ME!
-}
-
-void randomfunc2() {
-  // DELETE ME!
-}
-
-void randomfunc3() {
-  // DELETE ME!
 }
 
 int main() {
