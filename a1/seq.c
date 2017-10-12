@@ -34,8 +34,8 @@ int main() {
 
   // Generate random numbers
   srand(time(NULL));
-  randm(A, n, n, 20);
-  randm(B, n, n, 20);
+  randm(A, n, n, h);
+  randm(B, n, n, h);
   
   multiplym(A, B, C, n);
   printf("Sequential: \n");
