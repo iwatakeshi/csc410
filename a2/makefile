@@ -1,6 +1,6 @@
 default: dijkstra
 
-dijkstra: dijkstra.cpp matrix.c
+dijkstra: dijkstra.cpp
 	g++ -g -std=c++14 dijkstra.cpp -o a.out
 
 riemann: riemann.c
