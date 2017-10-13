@@ -4,74 +4,64 @@
 #include <tuple>
 #include <vector>
 
-/* 
-  Note: A different branch is used for matrix.h!
-  See https://github.com/iwatakeshi/matrix.h/tree/change-mallocm-callocm-signatures
-*/
-
-const int Infinity = INT_MAX;
+const int Infinity = 9999;
 
 /*
-  mindistance(Destination value, Marked Value + Edge Weight)
-  The destination value is the destination vertex (i.e. Y) column.
-  The marked value is the source vertex (i.e. X) column.
-  The edge weight of the edges that connects the source and destination.
+  Dijkstra's Algorithm Sequential
+  Contributor: Takeshi
+  Credit: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Using_a_priority_queue
 */
-// int mindistance(int a, int b) {
-//   if (a < b) return a;
-//   return b;
-// }
+void dijkstra(std::vector<std::vector<int>> G, long unsigned size, int source) {
 
-void dijkstra(std::vector<std::vector<int>> G, int size, int source) {
-  int distance[size];
-  int previous[size];
-  for (int i = 0; i < size; i++) {
-    distance[i] = Infinity;
-    previous[i] = 0;
-  }
-  distance[source] = 0;
-
+  // Define a type for a pair
   typedef std::pair<int, int> P;
+  // Createa vertex set Q
   std::priority_queue<P, std::vector<P>, std::greater<P>> Q;
 
-  Q.push(std::make_pair(source, G[source][source]));
+  // Unknown distance from source to v
+  std::vector<unsigned int> distance(size, Infinity);
+  // Predecessor of v
+  std::vector<int> previous(size, -1);
 
-  for (int i = 0; i < size; i++) {
-    for (int j = 0; j < size; j++) {
-      if (G[i][j] > 0 && G[i][j] != G[source][source]) {
-        Q.push(std::make_pair(i, G[i][j]));
-      }
-    }
+  // Initialization
+  distance[source] = 0;
+
+  //
+  for (int v = 0; v < size; v++) {
+    Q.push(std::make_pair(v, distance[v]));
   }
-
+  
+  // The main loop
   while (!Q.empty()) {
-    auto p = Q.top();
+    // auto p = Q.top();
+    auto u = Q.top().first;
     Q.pop();
-    auto u = std::get<1>(p);
+    // printf("u: %d, v: %d\n", u, std::get<1>(p));
     for (int v = 0; v < size; v++) {
       // If an adjacent node exists
       if (G[u][v] > 0) {
         int alt = distance[u] + G[u][v];
         if (alt < distance[v]) {
           distance[v] = alt;
-          previous[v] = alt;
-          Q.push(std::make_pair(u, distance[v]));
+          previous[v] = u;
+          Q.push(std::make_pair(v, distance[v]));
         }
       }
     }
   }
 
-  for (int i = 1; i < size; i++) {
+  char letters[26] = {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  };
+  for (int i = 0; i < size; i++) {
     if (distance[i] == Infinity || distance[i] == 0) {
-      printf("Distance from %d to %d: \n", source, i);
+      printf("Distance from %c to %c: -- \n", letters[source], letters[i]);
     } else {
-      printf("Distance from %d to %d: %d", source, i, distance[i]);
+      printf("Distance from %c to %c: %d\n", letters[source], letters[i], distance[i]);
     }
   }
-  // for (int i = 1; i < graphSize; i++) {
-  //   printPath(previous, source, i);
-  //   printf("\n");
-  // }
 }
 
 /* 
@@ -84,26 +74,37 @@ void dijkstra(std::vector<std::vector<int>> G, int size, int source) {
 */
 
 int main() {
-  int n = 5;
-  std::vector<std::vector<int>> G;
-  G.resize(5);
-  for (int i = 0; i < 5; i++) {
-    G[i].push_back(i);
-    std::random_shuffle(G.begin(), G.end());
-    for (int j = 0; j < 5; j++) {
-      G[i].push_back(j);
-      std::random_shuffle(G[i].begin(), G[i].end());
-    }
-  }
+  std::vector<std::vector<int>> G = {
+    { 0, 11, 4, 20, 0, 0 },
+    { 0, 0, 0, 6, 0, 0 },
+    { 0, 2, 0, 15, 7, 0 },
+    { 0, 0, 0, 0, 0, 5 },
+    { 0, 0, 0, 3, 0, 30 },
+    { 0, 0, 0, 0, 18, 0 },
+  };
 
-  for (int i = 0; i < 5; i++) {
-    for (int j = 0; j < 5; j++) {
-      printf("%2d", G[i][j]);
+  char letters[26] = {
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+  };
+
+  printf("Number of nodes: %lu\n", G.size());
+  for (int i = 0; i < G.size(); i++) {
+    printf("%6c", letters[i]);
+  }
+  printf("\n");
+  for (int i = 0; i < G.size(); i++) {
+    printf("%c", letters[i]);
+    for (int j = 0; j < G.size(); j++) {
+      printf("%6.2d", G[i][j]);
     }
     printf("\n");
   }
 
-  dijkstra(G, n, 2);
+  for (int source = 0; source < G.size(); source++) {
+    dijkstra(G, G.size(), source);
+  }
 
   return 0;
 }
