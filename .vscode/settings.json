@@ -1,5 +1,26 @@
 {
   "files.associations": {
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "string.h": "c",
+    "limits.h": "c",
+    "array": "cpp",
+    "initializer_list": "cpp",
+    "utility": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cwchar": "cpp",
+    "exception": "cpp",
+    "iosfwd": "cpp",
+    "limits": "cpp",
+    "new": "cpp",
+    "stdexcept": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "typeinfo": "cpp"
   }
 }
