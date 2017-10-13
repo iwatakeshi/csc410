@@ -1,0 +1,15 @@
+#! /bin/bash
+
+function get_dep {
+  if [ -d "matrix.h-change-mallocm-callocm-signatures.zip" ]; then
+    unzip matrix.h-change-mallocm-callocm-signatures.zip && mv matrix.h-change-mallocm-callocm-signatures/ matrix/
+  else
+    curl -LJO https://github.com/iwatakeshi/matrix.h/archive/change-mallocm-callocm-signatures.zip && unzip matrix.h-change-mallocm-callocm-signatures.zip && mv matrix.h-change-mallocm-callocm-signatures/ matrix/
+  fi
+}
+
+if [ -d "./matrix/" ]; then
+	cp matrix/matrix.* . && rm -r -f matrix/ matrix.h-change-mallocm-callocm-signatures.zip
+else 
+  get_dep && cp matrix/matrix.* . && rm -r -f matrix/ matrix.h-change-mallocm-callocm-signatures.zip
+fi
