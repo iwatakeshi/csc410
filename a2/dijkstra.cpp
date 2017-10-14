@@ -20,8 +20,10 @@ void dijkstra(std::vector<std::vector<int>> G, long unsigned size, int source) {
 
   // Unknown distance from source to v
   std::vector<unsigned int> distance(size, Infinity);
-  // Predecessor of v
+  // Predecessors of v
   std::vector<int> previous(size, -1);
+  // Costs
+  std::vector<unsigned int> cost(size, 0);
 
   // Initialization
   distance[source] = 0;
@@ -44,6 +46,7 @@ void dijkstra(std::vector<std::vector<int>> G, long unsigned size, int source) {
         if (alt < distance[v]) {
           distance[v] = alt;
           previous[v] = u;
+          cost[v] = G[u][v];
           Q.push(std::make_pair(v, distance[v]));
         }
       }
@@ -57,9 +60,9 @@ void dijkstra(std::vector<std::vector<int>> G, long unsigned size, int source) {
   };
   for (int i = 0; i < size; i++) {
     if (distance[i] == Infinity || distance[i] == 0) {
-      printf("Distance from %c to %c: -- \n", letters[source], letters[i]);
+      printf("Distance from %c to %c: --\tCost: -- \n", letters[source], letters[i]);
     } else {
-      printf("Distance from %c to %c: %d\n", letters[source], letters[i], distance[i]);
+      printf("Distance from %c to %c: %d \tCost: %d \n", letters[source], letters[i], distance[i], cost[i]);
     }
   }
 }
