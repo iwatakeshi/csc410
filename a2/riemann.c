@@ -54,8 +54,7 @@ double sum = 0;
 double area(func f, double a, double b, int n) {
 
   double x = 0, deltaX = fabs(b - a) / n;
-#pragma omp parallel for reduction(+ \
-                                   : sum)
+#pragma omp parallel for reduction(+ : sum)
   for (int i = 0; i < n; i++) {
     x = a + i * deltaX;
     sum += f(x) * deltaX;

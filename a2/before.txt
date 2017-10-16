@@ -1,0 +1,6 @@
+  0   7  10  19   7 INF 
+INF   0   3  24  12 INF 
+INF INF   0 INF INF INF 
+INF  10  13   0  25 INF 
+INF  22  25  12   0 INF 
+INF INF INF INF INF   0 

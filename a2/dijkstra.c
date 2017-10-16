@@ -11,6 +11,10 @@
 #include <unistd.h>
 #include <omp.h>
 
+<<<<<<< HEAD
+=======
+#define NODES 6 //for static assignment
+>>>>>>> origin/master
 #define Inf 9999 //used as infinty
 
 //function proto
@@ -36,6 +40,7 @@ int main(int argc, char *argv[]) {
 
 	omp_set_num_threads(threads);
 
+<<<<<<< HEAD
 	//File IO stuff for dynamic graphs from files
 	int nodes;
 	char fileSelect[12];
@@ -47,10 +52,23 @@ int main(int argc, char *argv[]) {
 	//build graph from file
 	make_graph(inFile, nodes);
 	fclose(inFile);
+=======
+int main() {
+  //for static graph
+  int graph_matrix[NODES][NODES] = {
+    { 0, 7, 12, Inf, 7, Inf },
+    { Inf, 0, 3, Inf, 12, Inf },
+    { Inf, Inf, 0, Inf, Inf, Inf },
+    { Inf, 10, Inf, 0, 25, Inf },
+    { Inf, Inf, Inf, 12, 0, Inf },
+    { Inf, Inf, Inf, Inf, Inf, 0 }
+  };
+>>>>>>> origin/master
 
   //Build solution matrix and fill with infinity
   sol_matrix = callocm(nodes, nodes, sizeof(int));
 
+<<<<<<< HEAD
   //parallel here as every thread will get a row to calculate
   //#pragma omp parallel for
   for (int _src_node = 0; _src_node < nodes; _src_node++) {
@@ -62,6 +80,29 @@ int main(int argc, char *argv[]) {
 
   freem(sol_matrix, nodes);
   freem(graph_matrix, nodes);
+=======
+  //parallel here might be best?
+  #pragma omp parallel for
+  for (int _src_node = 0; _src_node < NODES; _src_node++) {
+    printf("thread id: %d, threads: %d\n", omp_get_thread_num(), omp_get_num_threads());
+    dijkstras_funct(graph_matrix, _src_node);
+  }
+
+  //print solution matrix
+  for (int i = 0; i < NODES; i++) {
+    for (int j = 0; j < NODES; j++) {
+      if (sol_matrix[i][j] == Inf)
+        printf("INF ");
+      else
+        printf("%3d ", sol_matrix[i][j]);
+    }
+    printf("\n");
+  }
+
+  // getchar();
+
+  freem(sol_matrix, NODES);
+>>>>>>> origin/master
   return 0;
 }
 
@@ -86,7 +127,11 @@ void dijkstras_funct(int _nodes, int src_node) {
   visited[src_node] = 1; //already visited yourself
   count = 1;
 
+<<<<<<< HEAD
   while (count < _nodes - 1) {
+=======
+  while (count < NODES - 1) {
+>>>>>>> origin/master
     mindistance = Inf;
 
     //nextnode gives the node at minimum distance
@@ -113,6 +158,7 @@ void dijkstras_funct(int _nodes, int src_node) {
       sol_matrix[src_node][i] = distance[i];
     }
     count++;
+
   } //end while
 	//cleanup mallocs
 	free(distance);
