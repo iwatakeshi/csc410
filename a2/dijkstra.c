@@ -27,14 +27,16 @@ int** graph_matrix;
 int main(int argc, char *argv[]) {
 
 	int fileNum = 1;//this will be argv 1 but set here as defualt
-	int threads = 5;//this will be argv 2 set as defualt
-	if (argc == 3)
+	int threads = 1;//this will be argv 2 set as defualt
+	int t_enable = 0;//enable threads 0 is no
+	if (argc == 4)
 	{
 		fileNum = atoi(argv[1]);
 		threads = atoi(argv[2]);
+		t_enable = atoi(argv[3]);
 	}
 
-	omp_set_num_threads(threads);
+	
 
 	//File IO stuff for dynamic graphs from files
 	int nodes;
@@ -52,9 +54,26 @@ int main(int argc, char *argv[]) {
   sol_matrix = callocm(nodes, nodes, sizeof(int));
 
   //parallel here as every thread will get a row to calculate
-  //#pragma omp parallel for
-  for (int _src_node = 0; _src_node < nodes; _src_node++) {
-    dijkstras_funct(nodes, _src_node);
+  if(t_enable == 1)//use threads
+  {
+	printf("Dijkstra's Shortest Path Algorithm:\n");
+	printf("With %d nodes, using input file: [routes%d.txt]\n",nodes,fileNum);
+	printf("Parallel with %d threads:\n\n",threads);
+	omp_set_num_threads(threads);//set number of threads
+	#pragma omp parallel for
+  	for (int _src_node = 0; _src_node < nodes; _src_node++) {
+			// printf("thread id: %d, num of threads: %d\n", omp_get_thread_num(), omp_get_num_threads());
+			dijkstras_funct(nodes, _src_node);
+  	}
+  }
+  else//don't use threads
+  {
+	printf("Dijkstra's Shortest Path Algorithm:\n");
+	printf("With %d nodes, using input file: [routes%d.txt]\n",nodes,fileNum);
+	printf("Sequential:\n\n");
+  	for (int _src_node = 0; _src_node < nodes; _src_node++) {
+    		dijkstras_funct(nodes, _src_node);
+  	}
   }
 
 	//print solution matrix
@@ -79,7 +98,6 @@ void dijkstras_funct(int _nodes, int src_node) {
     distance[i] = graph_matrix[src_node][i];
     pred[i] = src_node;
     visited[i] = 0;
-    sleep(1);
   }
 
   distance[src_node] = 0; //always 0 to itself
@@ -87,6 +105,7 @@ void dijkstras_funct(int _nodes, int src_node) {
   count = 1;
 
   while (count < _nodes - 1) {
+    sleep(1);
     mindistance = Inf;
 
     //nextnode gives the node at minimum distance
@@ -104,7 +123,6 @@ void dijkstras_funct(int _nodes, int src_node) {
         if (mindistance + graph_matrix[nextnode][i] < distance[i]) {
           distance[i] = mindistance + graph_matrix[nextnode][i];
           pred[i] = nextnode;
-          sleep(1);
         }
     }
     //assign row data to solution matrix distance array holds all data
@@ -160,7 +178,7 @@ void print_sol(int _nodes)
 	for (int i = 0; i < _nodes; i++) {
 		for (int j = 0; j < _nodes; j++) {
 			if (sol_matrix[i][j] == Inf)
-				printf("Inf ");
+				printf("INF ");
 			else
 				printf("%3d ", sol_matrix[i][j]);
 		}
