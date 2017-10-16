@@ -58,7 +58,7 @@ double area(func f, double a, double b, int n) {
   for (int i = 0; i < n; i++) {
     x = a + i * deltaX;
     sum += f(x) * deltaX;
-    printf("thread id: %d, sum: %f\n", omp_get_thread_num(), sum);
+    // printf("thread id: %d, sum: %f\n", omp_get_thread_num(), sum);
   }
 
   return sum;

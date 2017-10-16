@@ -5,7 +5,7 @@
         "name": "(gdb) Launch main.c",
         "type": "cppdbg",
         "request": "launch",
-        "program": "${workspaceRoot}/a2/a.out",
+        "program": "${workspaceRoot}/a2/dijkstra.out",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${workspaceRoot}",
