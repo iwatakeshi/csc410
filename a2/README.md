@@ -19,15 +19,20 @@ To run the program in parallel, provide the file number to load and specifiy the
 ```
 ### Custom Data Files
 The file format is as follows:
-6       <-The number of nodes for the graph
-0 1 3   <-Source node: Destination node: Wieght of edge
-2 5 12
-.....
 
-NOTE: 0 based indexing, so we have 6 nodes, our sixth node is 5, so we can't do:
+```
+6       <- The number of nodes for the graph
+0 1 3   <- Source node: Destination node: Wieght of edge
+2 5 12
+```
+---
+
+**NOTE**: 0 based indexing, so we have 6 nodes, our sixth node is 5, so we can't do:
+```
 6
-1 6 12  <-seg fualt, there is no sixth node
-.....
+1 6 12  <- seg fault, there is no sixth node
+```
+---
 
 Also, files have to be named 'routes%d.txt' where '%d' is the file number
 
