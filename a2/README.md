@@ -37,7 +37,11 @@ The file format is as follows:
 Also, files have to be named 'routes%d.txt' where '%d' is the file number
 
 ## Riemann's Sum Algorithm
-NOTE: Must pass all arguments or program will use defualt values.  
+
+---
+**NOTE**: Must pass all arguments or program will use defualt values.  
+
+---
 
 ```bash
 ./riemann.out [starting x value] [ending x value] [number of rectangles] [number of threads] [enable threads, 0 no, 1 yes]
