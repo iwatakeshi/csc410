@@ -23,14 +23,20 @@ The file format is as follows:
 0 1 3   <-Source node: Destination node: Wieght of edge
 2 5 12
 .....
+
 NOTE: 0 based indexing, so we have 6 nodes, our sixth node is 5, so we can't do:
 6
 1 6 12  <-seg fualt, there is no sixth node
 .....
-Also files have to be named 'routes%d.txt' where '%d' is the file number
+
+Also, files have to be named 'routes%d.txt' where '%d' is the file number
 
 ## Riemann's Sum Algorithm
-NOTE: must pass all arguments or program will use defualt values.  ./riemann.out [starting x value] [ending x value] [number of rectangles] [number of threads] [enable threads, 0 no, 1 yes]
+NOTE: Must pass all arguments or program will use defualt values.  
+
+```bash
+./riemann.out [starting x value] [ending x value] [number of rectangles] [number of threads] [enable threads, 0 no, 1 yes]
+```
 
 ### Sequential
 To run the program, provide the starting point, ending point, and the number of rectangles to use as in the xample below.
